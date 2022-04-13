@@ -1,0 +1,247 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "devt",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "devt",
+            "style": "camelCase"
+          }
+        ],
+        "@typescript-eslint/array-type": [
+          "error",
+          {
+            "default": "array"
+          }
+        ],
+        "@typescript-eslint/await-thenable": "error",
+        "@typescript-eslint/consistent-type-definitions": "off",
+        "@typescript-eslint/explicit-member-accessibility": [
+          "error",
+          {
+            "accessibility": "explicit",
+            "overrides": {
+              "accessors": "explicit",
+              "parameterProperties": "explicit",
+              "constructors": "off"
+            }
+          }
+        ],
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/no-unnecessary-type-assertion": "error",
+        "@typescript-eslint/restrict-plus-operands": "error",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "default",
+            "format": [
+              "camelCase"
+            ],
+            "leadingUnderscore": "forbid",
+            "trailingUnderscore": "forbid"
+          },
+          {
+            "selector": "typeLike",
+            "format": [
+              "PascalCase"
+            ]
+          },
+          {
+            "selector": "variable",
+            "modifiers": [
+              "exported",
+              "const"
+            ],
+            "format": [
+              "UPPER_CASE",
+              "camelCase"
+            ]
+          },
+          {
+            "selector": "property",
+            "modifiers": [
+              "private"
+            ],
+            "format": [
+              "camelCase"
+            ],
+            "leadingUnderscore": "require"
+          },
+          {
+            "selector": "parameterProperty",
+            "modifiers": [
+              "private"
+            ],
+            "format": [
+              "camelCase"
+            ],
+            "leadingUnderscore": "require"
+          },
+          {
+            "selector": "property",
+            "modifiers": [
+              "static",
+              "readonly"
+            ],
+            "format": [
+              "UPPER_CASE"
+            ]
+          },
+          {
+            "selector": "property",
+            "modifiers": [
+              "private",
+              "static",
+              "readonly"
+            ],
+            "format": [
+              "UPPER_CASE"
+            ],
+            "leadingUnderscore": "forbid"
+          },
+          {
+            "selector": "interface",
+            "prefix": [
+              "I"
+            ],
+            "format": [
+              "PascalCase"
+            ]
+          },
+          {
+            "selector": "enumMember",
+            "format": [
+              "PascalCase"
+            ]
+          }
+        ],
+        "@typescript-eslint/member-ordering": [
+          "error",
+          {
+            "classes": {
+              "memberTypes": [
+                "static-field",
+                "instance-field",
+                "constructor",
+                "static-method",
+                "instance-method",
+                "abstract-method"
+              ]
+            },
+            "classExpressions": {
+              "memberTypes": [
+                "static-field",
+                "instance-field",
+                "constructor",
+                "static-method",
+                "instance-method",
+                "abstract-method"
+              ]
+            }
+          }
+        ],
+        "@typescript-eslint/ban-types": [
+          "error",
+          {
+            "types": {
+              "object": false,
+              "Function": false
+            },
+            "extendDefaults": true
+          }
+        ],
+        "@typescript-eslint/member-delimiter-style": "off",
+        "@typescript-eslint/no-shadow": [
+          "error"
+        ],
+        "no-shadow": "off",
+        "prefer-arrow/prefer-arrow-functions": "off",
+        "quote-props": "off",
+        "arrow-body-style": [
+          "error",
+          "as-needed"
+        ],
+        "brace-style": [
+          "error",
+          "1tbs",
+          {
+            "allowSingleLine": true
+          }
+        ],
+        "guard-for-in": "off",
+        "id-blacklist": "off",
+        "id-match": "off",
+        "max-len": [
+          "error",
+          {
+            "ignoreRegExpLiterals": false,
+            "ignoreStrings": true,
+            "ignorePattern": "^class |^(.*?)return |^(.*?)public |^(.*?)private |^import |^export | implements",
+            "code": 180
+          }
+        ],
+        "no-multiple-empty-lines": [
+          "error",
+          {
+            "max": 2
+          }
+        ],
+        "indent": [
+          "error",
+          2,
+          {
+            "SwitchCase": 1
+          }
+        ],
+        "no-new-func": "error",
+        "no-regex-spaces": "error",
+        "no-return-await": "error",
+        "no-sequences": "error",
+        "no-sparse-arrays": "error",
+        "no-template-curly-in-string": "error",
+        "no-underscore-dangle": "off",
+        "prefer-object-spread": "error",
+        "computed-property-spacing": "error",
+        "func-call-spacing": "error",
+        "no-mixed-spaces-and-tabs": "error",
+        "block-spacing": "error"
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {}
+    }
+  ]
+}

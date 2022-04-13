@@ -1,0 +1,8 @@
+@import "./variables";
+
+::ng-deep lc-input span {
+  margin: 0px 0px 0px 10px !important;
+}
+::ng-deep .switch-checked .toggle-switch {
+  background-color: $atlas-switch-color !important;
+}

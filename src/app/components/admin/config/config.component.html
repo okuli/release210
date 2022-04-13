@@ -1,0 +1,138 @@
+<div class="custom-container">
+  <div class="modal d-block custom-modal" id="editConfigModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header flex-column">
+
+          <div class="modal-title w-100 d-flex justify-content-between" id="exampleModalLongTitle">
+            <span translate>VTerminalConfig</span>
+            <!-- <lc-button size="sm" (click)="redirectToTranslations()" translate>Translations</lc-button> -->
+          </div>
+
+          <div *ngIf="filePath"><span translate>FilePath</span> : <span class="file-path">{{filePath}} </span>
+          </div>
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+        </div>
+        <div class="modal-body">
+
+          <section [formGroup]="form">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="d-flex mb-1">
+                  <h2 class="mx-1">Redirect to Survey</h2>
+                  <lc-switch formControlName="isRedirectToSurvey"> </lc-switch>
+                </div>
+              </div>
+              <!-- <div class="col-md-6">
+                <select name="currentLanguage" id="currentLanguage" class="float-right"
+                  formControlName="currentLanguage" (change)="changeLanguage($event)">
+                  <option value="en">English</option>
+                  <option value="de">Deutsch</option>
+                  <option value="tr">Turkish</option>
+                </select>
+              </div> -->
+            </div>
+
+            <lc-input inputType="text" class="mb-1 " label="{{'BeraterpoolUrl' | translate}}"
+              formControlName="beraterpoolUrl" theme="outlined">
+            </lc-input>
+
+            <lc-input inputType="text" class="mb-1 " label="{{'BeraterpoolServerUrl' | translate}}"
+              formControlName="beraterpoolServerUrl" theme="outlined">
+            </lc-input>
+
+            <div class="row">
+              <div class="col-md-6">
+                <lc-input inputType="number" class="mb-1 " label="{{'BeraterpoolOwnerId' | translate}}"
+                  formControlName="beraterpoolOwnerId" theme="outlined">
+                </lc-input>
+              </div>
+              <div class="col-md-6">
+                <lc-input inputType="number" class="mb-1 " label="{{'BeraterpoolGroupId' | translate}}"
+                  formControlName="beraterpoolGroupId" theme="outlined">
+                </lc-input>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <lc-input inputType="text" class="mb-1 " label="{{'AuthSettingsClientId' | translate}}"
+                  formControlName="authSettingsClientId" theme="outlined">
+                </lc-input>
+              </div>
+              <div class="col-md-6">
+                <lc-input inputType="text" class="mb-1 " label="{{'AuthSettingsClientSecret' | translate}}"
+                  formControlName="authSettingsClientSecret" theme="outlined">
+                </lc-input>
+              </div>
+            </div>
+
+            <lc-input inputType="text" class="mb-1 " label="{{'AuthSettingsTokenUrl' | translate}}"
+              formControlName="authSettingsTokenUrl" theme="outlined">
+            </lc-input>
+
+            <lc-input inputType="text" class="mb-1 " label="{{'SyncSettingsServiceUrl' | translate}}"
+              formControlName="syncSettingsTokenUrl" theme="outlined">
+            </lc-input>
+
+            <lc-input inputType="text" class="mb-1 " label="{{'JitsiDomain' | translate}}" formControlName="jitsiDomain"
+              theme="outlined">
+            </lc-input>
+
+            <div class="row">
+              <div class="col-md-6">
+                <lc-input inputType="text" class="mb-1 " label="{{'JitsiSecret' | translate}}"
+                  formControlName="jitsiSecret" theme="outlined">
+                </lc-input>
+              </div>
+              <div class="col-md-6">
+                <lc-input inputType="text" class="mb-1 " label="{{'JitsiAUD' | translate}}" formControlName="jitsiAud"
+                  theme="outlined">
+                </lc-input>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <lc-input inputType="text" class="mb-1 " label="{{'JitsiISS' | translate}}" formControlName="jitsiIss"
+                  theme="outlined">
+                </lc-input>
+              </div>
+              <div class="col-md-6">
+                <lc-input inputType="text" class="mb-1 " label="{{'JitsiSUB' | translate}}" formControlName="jitsiSub"
+                  theme="outlined">
+                </lc-input>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <!-- <span class="form-field-label" translate>ByeScreenTimeout</span> -->
+                <lc-input inputType="number" class="mb-1" label="{{'ByeScreenTimeout' | translate}}"
+                  formControlName="byeScreenTimeout" theme="outlined">
+                </lc-input>
+              </div>
+              <div class="col-md-6">
+                <!-- <span class="form-field-label" translate>NoAgentScreenTimeout</span> -->
+                <lc-input inputType="number" class="mb-1" label="{{'NoAgentScreenTimeout' | translate}}"
+                  formControlName="noAgentScreenTimeout" theme="outlined">
+                </lc-input>
+              </div>
+            </div>
+
+            <lc-input inputType="text" class="mb-1 " label="{{'surveyUrl' | translate}}" formControlName="surveyUrl"
+              theme="outlined">
+            </lc-input>
+
+            <lc-button (click)="logout()" translate>Logout</lc-button>
+            <lc-button class="float-right" (click)="changeConfigData();" translate>Save</lc-button>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,200 @@
+@import "./variables";
+
+*:focus-visible {
+  outline: 2px solid $atlas-form-primary-color !important;
+  box-shadow: 0 0px 8px 2px $atlas-form-primary-color !important;
+  border-radius: 4px;
+}
+
+@font-face {
+  font-family: BrixSansRegular;
+  src: url('../assets/font/BrixSansRegular.otf');
+}
+
+body {
+  margin: 0px;
+  background-color: $atlas-form-primary-bg-color;
+  font-family: BrixSansRegular;
+}
+
+.connect-info {
+  display: flex;
+  height: 100vh;
+}
+
+.connect-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.connect-desc {
+  text-align: center;
+  font-style: italic;
+  font-size: 2.3em;
+  color: $atlas-form-primary-description-color;
+  font-weight: bold;
+}
+
+.connect-Phone {
+  display: flex;
+}
+
+.connect-phone-icon {
+  content: url("../assets/phone.png");
+  display: inline-block;
+  width: 250px;
+  cursor: pointer;
+}
+
+.connect-phone-logo {
+  display: inline-block;
+  content: url("../assets/eonLogo.png");
+  height: 100px;
+  align-self: flex-end;
+}
+
+.fix {
+  position: fixed;
+  bottom: 10px;
+}
+
+.outerLoading {
+  width: 100%;
+  text-align: center;
+}
+
+.loading {
+  display: inline-block;
+  content: url("../assets/loading.gif");
+  width: 180px;
+}
+
+.red {
+  background-color: $vertical-color-line-one;
+  width: 70px;
+}
+
+.orange {
+  background-color: $vertical-color-line-two;
+  width: 150px;
+}
+
+.cyan {
+  background-color: $vertical-color-line-three;
+  width: 100px;
+}
+
+@media only screen and (max-width: 600px) {
+  .connect-desc {
+    font-size: 0.8em;
+  }
+
+  .connect-phone-icon {
+    width: 130px;
+  }
+
+  .connect-phone-logo {
+    height: 40px;
+  }
+
+  .loading {
+    width: 100px;
+  }
+
+  .red {
+    width: 20px;
+  }
+  .orange {
+    width: 50px;
+  }
+  .cyan {
+    width: 30px;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 800px) {
+  .connect-desc {
+    font-size: 1.4em;
+  }
+
+  .connect-phone-icon {
+    width: 150px;
+  }
+
+  .connect-phone-logo {
+    height: 50px;
+  }
+
+  .loading {
+    width: 120px;
+  }
+
+  .red {
+    width: 35px;
+  }
+  .orange {
+    width: 70px;
+  }
+  .cyan {
+    width: 45px;
+  }
+}
+
+@media only screen and (min-width: 801px) and (max-width: 1000px) {
+  .connect-desc {
+    font-size: 1.8em;
+  }
+
+  .connect-phone-icon {
+    width: 170px;
+  }
+
+  .connect-phone-logo {
+    height: 70px;
+  }
+
+  .loading {
+    width: 140px;
+  }
+
+  .red {
+    width: 45px;
+  }
+  .orange {
+    width: 90px;
+  }
+  .cyan {
+    width: 65px;
+  }
+}
+
+@media only screen and (min-width: 1001px) and (max-width: 1400px) {
+  .connect-desc {
+    font-size: 2.1em;
+  }
+
+  .connect-phone-icon {
+    width: 190px;
+  }
+
+  .connect-phone-logo {
+    height: 80px;
+  }
+
+  .loading {
+    width: 160px;
+  }
+
+  .red {
+    width: 55px;
+  }
+  .orange {
+    width: 120px;
+  }
+  .cyan {
+    width: 75px;
+  }
+}

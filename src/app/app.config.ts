@@ -82,7 +82,7 @@ export class AppConfig {
 
   public async getJitsiConfigData(): Promise<void> {
     await new Promise((resolve, reject) => {
-      this._http.get("./conf/config-v-terminal/jitsi.params.json").subscribe((jitsiResponse: any) => {
+      this._http.get("./mnt/res/vterminal-backend/jitsi.params.json").subscribe((jitsiResponse: any) => {
         this.jitsiConfig = jitsiResponse;
         resolve(true);
       }, (err) => {

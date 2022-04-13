@@ -46,6 +46,8 @@ export class UserAgentDetailsComponent implements OnInit, OnDestroy {
   public syncClient: any;
   public subscriber: any;
   public isReloadToConnectCall: boolean = false;
+  public isAgentAvailable: boolean = false;
+  public timeToCheckAgentAvailable = 60;
   public settings: ISetting = {
     auth: {
       clientId: '',
@@ -71,6 +73,7 @@ export class UserAgentDetailsComponent implements OnInit, OnDestroy {
     this.room = params.get('c')
     this.settings.sync.channelId = this.room ? this.room : "";
     this.run();
+    this.timerOnCheckAgentAvailable();
     this.userAgent.firstName = this.userAgent && this.userAgent.firstName ? this.userAgent.firstName : "Your";
     this.userAgent.lastName = this.userAgent && this.userAgent.lastName ? this.userAgent.lastName : "Host";
 
@@ -183,6 +186,15 @@ export class UserAgentDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
+  public timerOnCheckAgentAvailable() {
+    let timeInterval = setInterval(() => {
+      this.timeToCheckAgentAvailable -= 1;
+      if (this.timeToCheckAgentAvailable == 0) {
+        clearInterval(timeInterval);
+      }
+    }, 1000)
+  }
+
   public async run(): Promise<void> {
     try {
       const accessToken = await this.authenticate();
@@ -195,7 +207,13 @@ export class UserAgentDetailsComponent implements OnInit, OnDestroy {
     } catch (e) {
       if (e instanceof RoomWithoutHostException) {
         console.log('no host available');
-        this.redirectToConnectCall();
+        if (this.timeToCheckAgentAvailable == 0) {
+          if (!this.isAgentAvailable) {
+            this.redirectToConnectCall();
+          }
+        } else {
+          this.run();
+        }
       } else if (e instanceof RoomJoinDeclinedException) {
         console.log('host declined join request');
         this.redirectToConnectCall();
@@ -219,7 +237,10 @@ export class UserAgentDetailsComponent implements OnInit, OnDestroy {
       const host: any = await subscriber.roomMembers.pipe(map((members: any[]) => {
         let hostData = members.find((d: any) => {
           if (d.isHost) {
-            this.startMeeting();
+            this.isAgentAvailable = true;
+            setTimeout(() => {
+              this.startMeeting();
+            }, 500);
             this.hostData = d;
             let userName = d && d.username ? d.username : "Your Host";
             [this.userAgent.firstName, this.userAgent.lastName] = userName.split(" ");
@@ -240,7 +261,13 @@ export class UserAgentDetailsComponent implements OnInit, OnDestroy {
     } catch (e) {
       if (e instanceof RoomWithoutHostException) {
         console.log('no host available');
-        this.redirectToConnectCall();
+        if (this.timeToCheckAgentAvailable == 0) {
+          if (!this.isAgentAvailable) {
+            this.redirectToConnectCall();
+          }
+        } else {
+          this.run();
+        }
       } else if (e instanceof RoomJoinDeclinedException) {
         console.log('host declined join request');
         this.redirectToConnectCall();

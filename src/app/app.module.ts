@@ -9,11 +9,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CallEndComponent } from './components/user/call-end/call-end.component';
 import { APP_INITIALIZER } from '@angular/core';
 import { AppConfig } from './app.config';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LocalizationService } from "./core/services/localization.service";
-import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-import { initializeKeycloak } from './core/utility/app.init';
+import { KeycloakAngularModule } from 'keycloak-angular';
 import { ConfigComponent } from './components/admin/config/config.component';
 import { AtlasUIModule } from '@syncpilot/atlas-ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -70,12 +69,6 @@ export function createTranslateLoader(http: HttpClient) {
       useFactory: (config: AppConfig) => () => config.load(),
       deps: [AppConfig],
       multi: true
-    },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeKeycloak,
-      multi: true,
-      deps: [KeycloakService]
     }
   ],
   bootstrap: [AppComponent]

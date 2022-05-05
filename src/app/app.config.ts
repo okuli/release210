@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from './core/services/config.service';
-import { IConfigData } from './models/configData';
+import { IConfigData, IKeycloakConfig } from './models/configData';
+import { KeycloakService } from 'keycloak-angular';
 @Injectable()
 export class AppConfig {
 
@@ -35,7 +36,7 @@ export class AppConfig {
   public isConfigFileExists: boolean = false;
   public filePath?: string = ""
 
-  constructor(private _http: HttpClient, private _configService: ConfigService) { }
+  constructor(private _http: HttpClient, private _configService: ConfigService, private _keycloakService: KeycloakService) { }
 
   public getConfigFilePath() {
     return this.filePath;
@@ -62,6 +63,7 @@ export class AppConfig {
   public async load() {
     await this.getJitsiConfigData();
     await this.getAppConfigData();
+    await this.initializeKeycloak();
   }
 
   public async getAppConfigData(): Promise<void> {
@@ -100,4 +102,29 @@ export class AppConfig {
     scriptTag.src = `https://${this.config.jitsiDomain}/external_api.js`;
     document.getElementsByTagName('head')[0].appendChild(scriptTag);
   }
+
+  public async initializeKeycloak() {
+    await new Promise((resolve, reject) => {
+      let configData = {
+        config: {
+          url: '',
+          realm: '',
+          clientId: ''
+        },
+        initOptions: {
+          checkLoginIframe: true
+        }
+      }
+      this._configService.getKeycloakConfigData().subscribe((response: IKeycloakConfig) => {
+        configData.config.url = response.KEYCLOAK_AUTH_SERVER_URL;
+        configData.config.realm = response.KEYCLOAK_REALM;
+        configData.config.clientId = response.KEYCLOAK_RESOURCE;
+        return resolve(this._keycloakService.init(configData));
+      }, (error) => {
+        console.log("Not Getting Keycloak Config Data, Setup Default Data");
+        return resolve(true);
+      })
+    });
+  }
+
 }

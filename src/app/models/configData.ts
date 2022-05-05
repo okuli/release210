@@ -37,3 +37,15 @@ export interface IGuestUser {
   gender: string,
   additionalGuestInformation: any
 }
+
+/* eslint-disable */
+export interface IKeycloakConfig {
+  KEYCLOAK_AUTH_SERVER_URL: string,
+  KEYCLOAK_REALM: string,
+  KEYCLOAK_RESOURCE: string,
+  KEYCLOAK_IS_SSL_REQUIRED: string,
+  KEYCLOAK_IS_BEARER_ONLY: boolean,
+  KEYCLOAK_IS_PUBLIC_CLIENT: boolean,
+  KEYCLOAK_IS_RESOURCE_ROLE_MAPPINGS: boolean
+}
+/* eslint-enable */ 
